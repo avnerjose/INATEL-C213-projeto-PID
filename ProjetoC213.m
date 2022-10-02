@@ -18,18 +18,24 @@ hold off
 k = 5;
 t = 146.1;
 o = 11.9;
-sys = tf(5, [146.1, 1], 'InputDelay', 11.9);
+sys = tf(k, [t, 1], 'InputDelay', o);
 %% 
 
 % Controlador PID pela técnica IMC
 lambda = 20.23;
-KpIMC = (2*t*o)/(k*(2*lambda+o));
-TiIMC = t+0/2;
-TdIMC = (t*0)/(2*t+o);
-PIDIMC = pidstd (KpIMC,TiIMC,TdIMC);
-RespostaIMC = feedback(sys*PIDIMC,1);
+lambda = 22;
+KpIMC = (2*t+o)/(k*(2*lambda+o))
+TiIMC = t + o/2
+TdIMC = (t*o)/(2*t+o)
+PIDIMC = pidstd(KpIMC,TiIMC,TdIMC)
+sys
+tf(sys*PIDIMC)
+RespostaIMC = feedback(sys*PIDIMC,1)
+Resposta = sys*PIDIMC
+[b,a] = ss2tf(RespostaIMC.A,RespostaIMC.B,RespostaIMC.C,RespostaIMC.D)
+tf(b,a)
 grid on
-step (RespostaIMC*4)
+step(RespostaIMC*4)
 legend ('IMC')
 %% 
 
