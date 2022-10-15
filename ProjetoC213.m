@@ -50,9 +50,11 @@ step (RespostaCHRcom*4)
 legend ( 'CHRcom')
 %% 
 
+
 % Ajuste fino na técnica CHR com redução de 25%
 KpCHRcom
 KpCHRcom_ajusteFino = KpCHRcom * 0.75
+
 PIDCHRcom = pidstd(KpCHRcom_ajusteFino,TiCHRcom,TdCHRcom);
 RespostaCHRcom = feedback(sys*PIDCHRcom,1);
 grid on
